@@ -84,20 +84,7 @@ function Profile({ openDialog, setOpenDialog }: any) {
     rzp.open();
   };
 
-  const cancelSubscription = async () => {
-    try {
-      const result = await axios.post("/api/cancel-subscription", {
-        subId: user?.orderId,
-      });
-
-      console.log(result);
-      toast("Subscription Canceled");
-      window.location.reload();
-    } catch (error) {
-      console.error("Error canceling subscription:", error);
-      toast("Failed to cancel subscription");
-    }
-  };
+ 
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       {/* <DialogTrigger>Open</DialogTrigger> */}
@@ -161,7 +148,7 @@ function Profile({ openDialog, setOpenDialog }: any) {
                 <Button
                   className="mt-4 w-full"
                   variant={"secondary"}
-                  onClick={cancelSubscription}
+                  
                 >
                   Cancel Subscription
                 </Button>

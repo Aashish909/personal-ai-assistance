@@ -65,22 +65,3 @@ export const UpdateTokens = mutation({
     }
 })
 
-export const CancelSubscription = mutation({
-  args: {
-    uid: v.id("users"),
-  },
-  handler: async (ctx, args) => {
-    // Find the user
-    const user = await ctx.db.get(args.uid);
-    if (!user) {
-      throw new Error("User not found.");
-    }
-
-    // Update the user by removing the subscription (orderId)
-    await ctx.db.patch(args.uid, {
-      orderId: undefined, // Remove the subscription ID
-    });
-
-    return { message: "Subscription Canceled", success: true };
-  },
-});
